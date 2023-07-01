@@ -1,5 +1,6 @@
+/* eslint-disable */
 import { useDispatch, useSelector } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
@@ -16,6 +17,7 @@ import { SET_MENU } from 'redux/actions';
 
 // assets
 import { IconChevronRight } from '@tabler/icons';
+import { useEffect } from 'react';
 
 // styles
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
@@ -56,12 +58,17 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({
 const MainLayout = () => {
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
-  // Handle left drawer
+  const access_token = sessionStorage.getItem('access_token')
+  const navigate = useNavigate();
   const leftDrawerOpened = useSelector((state) => state.customization.opened);
   const dispatch = useDispatch();
   const handleLeftDrawerToggle = () => {
     dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
   };
+
+  useEffect(() => {
+    if(access_token === null) navigate({ pathname: '/login' })
+  }, [])
 
   return (
     <Box sx={{ display: 'flex' }}>

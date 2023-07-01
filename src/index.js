@@ -1,3 +1,4 @@
+// require('dotenv').config();
 import { createRoot } from 'react-dom/client';
 
 // third party
