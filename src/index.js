@@ -13,6 +13,7 @@ import { store } from './redux';
 // style + assets
 import 'assets/scss/style.scss';
 import config from './config';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
 // ==============================|| REACT DOM RENDER  ||============================== //
 
